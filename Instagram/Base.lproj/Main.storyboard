@@ -42,11 +42,17 @@
                                 <rect key="frame" x="58" y="451" width="60" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Login"/>
+                                <connections>
+                                    <action selector="loginUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ans-JO-1sh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCf-Q0-acz">
                                 <rect key="frame" x="279" y="451" width="75" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
+                                <connections>
+                                    <action selector="registerUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f07-zG-FsJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -67,7 +73,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="dJP-iW-77r" kind="presentation" id="MVg-mS-zDC"/>
+                        <outlet property="passwordField" destination="HzH-aA-E17" id="M6V-Sd-MkO"/>
+                        <outlet property="usernameField" destination="x4U-gz-08n" id="hwQ-oq-776"/>
+                        <segue destination="dJP-iW-77r" kind="presentation" identifier="loginSegue" id="MVg-mS-zDC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -135,7 +143,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="iFR-We-8N4">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="qHk-ku-ZQU">
-                                <rect key="frame" x="302" y="11" width="92" height="34"/>
+                                <rect key="frame" x="302" y="8.5" width="92" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="insta_camera_btn"/>
