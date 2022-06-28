@@ -6,6 +6,7 @@
 //
 
 #import "ProfileViewController.h"
+#import "PhotoCell.h"
 
 @interface ProfileViewController ()
 
@@ -15,6 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.topItem.title = @"Profile";
 }
-
 @end

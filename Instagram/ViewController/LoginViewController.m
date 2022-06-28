@@ -23,7 +23,7 @@
 - (IBAction)loginUser:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
-    if ([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""]) {
+    if ([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""]) {
         [self loginHelper];
     } else {
        [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
@@ -41,7 +41,7 @@
     // set user properties
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
-    if ([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""]) {
+    if ([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""]) {
         [self loginHelper];
     } else {
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
