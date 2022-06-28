@@ -11,8 +11,9 @@
 #import "LoginViewController.h"
 #import "PostCell.h"
 #import "Post.h"
+#import "ComposeViewController.h"
 
-@interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfPosts;
 @end
@@ -35,6 +36,7 @@
         mySceneDelegate.window.rootViewController = loginViewController;
     }];
 }
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     Post *post = self.arrayOfPosts[indexPath.row];
@@ -49,6 +51,11 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrayOfPosts.count;
+}
+
+- (void)didPost:(nonnull Post *)post {
+    [self.arrayOfPosts insertObject:post atIndex:0];
+    [self.tableView reloadData];
 }
 
 @end

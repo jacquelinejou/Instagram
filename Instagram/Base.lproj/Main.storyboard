@@ -102,7 +102,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="428"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8am-kd-ZYO">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8am-kd-ZYO">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="366"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="366" id="cY5-q4-1XA"/>
@@ -110,6 +110,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLo-Oq-kVM">
                                                     <rect key="frame" x="0.0" y="366" width="414" height="62"/>
+                                                    <color key="backgroundColor" systemColor="systemGray4Color"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -154,10 +155,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="insta_camera_btn"/>
+                                <connections>
+                                    <segue destination="1rb-Ap-teu" kind="presentation" id="b0M-WK-RZk"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="1rb-Ap-teu" kind="presentation" id="suB-TL-TUV"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -193,6 +194,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4EC-yJ-1uv">
+                                <rect key="frame" x="38" y="239" width="108" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Select Image"/>
+                                <connections>
+                                    <action selector="selectImages:" destination="4zk-xw-7xW" eventType="touchUpInside" id="nkW-y9-4e3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gF7-fA-OZ3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -200,7 +209,9 @@
                             <constraint firstItem="gF7-fA-OZ3" firstAttribute="trailing" secondItem="ZoT-ck-R1P" secondAttribute="trailing" constant="20" id="LRL-4J-zDr"/>
                             <constraint firstItem="ZoT-ck-R1P" firstAttribute="leading" secondItem="NzV-Hy-mTQ" secondAttribute="trailing" constant="10" id="Q7N-dS-tYh"/>
                             <constraint firstItem="NzV-Hy-mTQ" firstAttribute="top" secondItem="gF7-fA-OZ3" secondAttribute="top" constant="13" id="Qi1-Gq-Dgz"/>
+                            <constraint firstItem="4EC-yJ-1uv" firstAttribute="leading" secondItem="gF7-fA-OZ3" secondAttribute="leading" constant="38" id="TBp-oc-yyb"/>
                             <constraint firstItem="NzV-Hy-mTQ" firstAttribute="leading" secondItem="gF7-fA-OZ3" secondAttribute="leading" constant="20" id="jmf-bn-eUf"/>
+                            <constraint firstItem="4EC-yJ-1uv" firstAttribute="top" secondItem="NzV-Hy-mTQ" secondAttribute="bottom" constant="10" id="k6E-2J-6eQ"/>
                             <constraint firstItem="ZoT-ck-R1P" firstAttribute="top" secondItem="NzV-Hy-mTQ" secondAttribute="top" id="wkj-Gl-h7I"/>
                         </constraints>
                     </view>
@@ -211,7 +222,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                <connections>
+                                    <action selector="didTapCancel:" destination="4zk-xw-7xW" eventType="touchUpInside" id="PxU-7d-3f0"/>
+                                </connections>
                             </button>
+                            <connections>
+                                <action selector="didTapCancel:" destination="4zk-xw-7xW" id="jTQ-Ei-Lp7"/>
+                                <segue destination="C4x-yb-pHY" kind="presentation" identifier="HomeFeedView" id="nLP-qU-gjT"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="9Fe-W0-rtl">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="hdk-Tj-PNe">
@@ -219,9 +237,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Share"/>
+                                <connections>
+                                    <action selector="didTapShare:" destination="4zk-xw-7xW" eventType="touchUpInside" id="SbU-aO-SDs"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="captionLabel" destination="ZoT-ck-R1P" id="1qW-FG-iyC"/>
+                        <outlet property="postImage" destination="NzV-Hy-mTQ" id="TEH-1p-jOw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yiK-rU-sqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -256,11 +281,11 @@
             </objects>
             <point key="canvasLocation" x="7073.913043478261" y="115.84821428571428"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="Shg-PC-qjv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z74-7i-Zfh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="xdV-Eu-xc8"/>
+                    <tabBarItem key="tabBarItem" title="" image="feed_tab" id="xdV-Eu-xc8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="10K-xK-bhy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -312,11 +337,11 @@
             </objects>
             <point key="canvasLocation" x="5267" y="-928"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="zol-F8-5mo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lAw-RM-eeh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kkh-KF-lI1"/>
+                    <tabBarItem key="tabBarItem" title="" image="profile_tab" id="kkh-KF-lI1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DqJ-Zd-rfp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -332,13 +357,22 @@
             <point key="canvasLocation" x="6163.7681159420299" y="115.84821428571428"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nLP-qU-gjT"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="feed_tab" width="25" height="25"/>
+        <image name="image_placeholder" width="375" height="375"/>
         <image name="insta_camera_btn" width="25" height="25"/>
+        <image name="profile_tab" width="25" height="25"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
