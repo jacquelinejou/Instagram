@@ -2,21 +2,26 @@
 //  Post.h
 //  Instagram
 //
-//  Created by jacquelinejou on 6/27/22.
+//  Created by jacquelinejou on 6/28/22.
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Post : NSObject
+@interface Post : PFObject<PFSubclassing>
 
-@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *postID;
+@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) PFUser *author;
+
 @property (nonatomic, strong) NSString *caption;
-@property (nonatomic, strong) NSString *picture;
+@property (nonatomic, strong) PFFileObject *image;
+@property (nonatomic, strong) NSNumber *likeCount;
+@property (nonatomic, strong) NSNumber *commentCount;
 
-// Create initializer
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
++ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 
