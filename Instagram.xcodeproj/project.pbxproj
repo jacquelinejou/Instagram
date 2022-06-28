@@ -22,6 +22,8 @@
 		2D6A77C5286A56BE008786BF /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6A77C4286A56BE008786BF /* ComposeViewController.m */; };
 		2D6A77C8286A56E9008786BF /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6A77C7286A56E9008786BF /* ProfileViewController.m */; };
 		2D6A77CD286A6673008786BF /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D6A77CC286A6673008786BF /* Keys.plist */; };
+		2D6A77DB286AA462008786BF /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6A77DA286AA462008786BF /* PostCell.m */; };
+		2D6A77DF286AA4FC008786BF /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6A77DE286AA4FC008786BF /* Post.m */; };
 		594841D99C1EA46C00EA4CE5 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0681B76B98CC9C0095699B0 /* Pods_Instagram.framework */; };
 		DD8D5FA6E42AED9E418AACE3 /* Pods_InstagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D5F4DB2CADE98D906F62C3 /* Pods_InstagramTests.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,10 @@
 		2D6A77C6286A56E9008786BF /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		2D6A77C7286A56E9008786BF /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		2D6A77CC286A6673008786BF /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		2D6A77D9286AA462008786BF /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		2D6A77DA286AA462008786BF /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		2D6A77DD286AA4FC008786BF /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		2D6A77DE286AA4FC008786BF /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		3EF2FFD78FEA34DFCA65FD57 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		97D1498B6C4D74F5AF622F3C /* Pods_Instagram_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90B23C0234900DAFDD922B7 /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 		2D6A7787286A4E2D008786BF /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				2D6A77DC286AA4B4008786BF /* Models */,
+				2D6A77D8286AA451008786BF /* Cells */,
 				2D6A77C9286A56EE008786BF /* ViewController */,
 				2D6A7788286A4E2D008786BF /* AppDelegate.h */,
 				2D6A7789286A4E2D008786BF /* AppDelegate.m */,
@@ -177,6 +185,24 @@
 				2D6A77C7286A56E9008786BF /* ProfileViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		2D6A77D8286AA451008786BF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2D6A77D9286AA462008786BF /* PostCell.h */,
+				2D6A77DA286AA462008786BF /* PostCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2D6A77DC286AA4B4008786BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2D6A77DD286AA4FC008786BF /* Post.h */,
+				2D6A77DE286AA4FC008786BF /* Post.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		464B7D8A870FA311C6CA9B63 /* Frameworks */ = {
@@ -444,6 +470,8 @@
 				2D6A77C2286A5650008786BF /* HomeFeedViewController.m in Sources */,
 				2D6A77BF286A547E008786BF /* LoginViewController.m in Sources */,
 				2D6A778A286A4E2D008786BF /* AppDelegate.m in Sources */,
+				2D6A77DB286AA462008786BF /* PostCell.m in Sources */,
+				2D6A77DF286AA4FC008786BF /* Post.m in Sources */,
 				2D6A77C5286A56BE008786BF /* ComposeViewController.m in Sources */,
 				2D6A77C8286A56E9008786BF /* ProfileViewController.m in Sources */,
 				2D6A779B286A4E2F008786BF /* main.m in Sources */,
