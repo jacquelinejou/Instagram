@@ -13,11 +13,14 @@
 #import "PostDelegate.h"
 #import "Post.h"
 #import "ComposeViewController.h"
+#import "InfiniteScrollViewController.h"
 #import "PostDetailsViewController.h"
 
 @interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, PostDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfPosts;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (nonatomic, strong) InfiniteScrollActivityView* loadingMoreView;
 @end
 
 @implementation HomeFeedViewController
@@ -33,18 +36,14 @@
     [self.tableView insertSubview:refreshControl atIndex:0];
     
     // load posts
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"createdAt"];
-    [query includeKey:@"author"];
-    query.limit = 20;
-
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            self.arrayOfPosts = (NSMutableArray *)posts;
-            [self.tableView reloadData];
-        }
-    }];
+    [self loadMoreData:20];
+    
+    // Set up Infinite Scroll loading indicator
+    self.isMoreDataLoading = false;
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -66,6 +65,7 @@
     }];
     cell.captionLabel.text = post.caption;
     cell.post = post;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -108,6 +108,46 @@
         // Tell the refreshControl to stop spinning
         [refreshControl endRefreshing];
     }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            // Update position of loadingMoreView, and start loading indicator
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+            [self loadMoreData:[self.arrayOfPosts count] + 20];
+        }
+    }
+}
+
+-(void)loadMoreData:(NSInteger)numReloadCells {
+    // load posts
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    query.limit = numReloadCells;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.arrayOfPosts = (NSMutableArray *)posts;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row + 1 == [self.arrayOfPosts count]){
+        [self loadMoreData:[self.arrayOfPosts count] + 20];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
