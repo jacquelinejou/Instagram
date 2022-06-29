@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *captionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (strong, nonatomic) UIImage *resizedImage;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 @end
 
@@ -60,7 +61,9 @@
     return newImage;
 }
 
+// Add a loading sign while request is going on
 - (IBAction)didTapShare:(id)sender {
+    self.shareButton.enabled = NO;
     [Post postUserImage:self.resizedImage withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(!error){
             [self.delegate loadMoreData:20];
@@ -74,6 +77,7 @@
             [alert addAction:okAction];
         }
         [self dismissViewControllerAnimated:YES completion:nil];
+        self.shareButton.enabled = YES;
     }];
 }
 
