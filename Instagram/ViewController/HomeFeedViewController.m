@@ -27,6 +27,9 @@
     self.tableView.delegate = self;
     self.arrayOfPosts = [[NSMutableArray alloc] init];
     self.navigationController.navigationBar.topItem.title = @"Home Feed";
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:refreshControl atIndex:0];
     
     // load posts
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
@@ -82,6 +85,27 @@
             self.arrayOfPosts = (NSMutableArray *)posts;
             [self.tableView reloadData];
         }
+    }];
+}
+
+// Makes a network request to get updated data
+// Updates the tableView with the new data
+// Hides the RefreshControl
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    // load posts
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.arrayOfPosts = (NSMutableArray *)posts;
+            [self.tableView reloadData];
+        }
+        // Tell the refreshControl to stop spinning
+        [refreshControl endRefreshing];
     }];
 }
 
