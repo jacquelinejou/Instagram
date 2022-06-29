@@ -13,6 +13,7 @@
 #import "PostDelegate.h"
 #import "Post.h"
 #import "ComposeViewController.h"
+#import "PostDetailsViewController.h"
 
 @interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, PostDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -110,10 +111,17 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navController = [segue destinationViewController];
-    ComposeViewController *composeViewController = (ComposeViewController *)navController.topViewController;
-    // Third step, set the delegate property
-    composeViewController.delegate = self;
+    if ([segue.identifier isEqualToString:@"ComposeView"]) {
+        UINavigationController *navController = [segue destinationViewController];
+        ComposeViewController *composeViewController = (ComposeViewController *)navController.topViewController;
+        // Third step, set the delegate property
+        composeViewController.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"PostDetails"]) {
+        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:sender];
+        Post *dataToPass = self.arrayOfPosts[myIndexPath.row];
+        PostDetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.detailPost = dataToPass;
+    }
 }
 
 @end
