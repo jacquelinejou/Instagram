@@ -15,6 +15,7 @@
 #import "ComposeViewController.h"
 #import "InfiniteScrollViewController.h"
 #import "PostDetailsViewController.h"
+#import "TableCell.h"
 
 @interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, PostDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,12 +25,19 @@
 @end
 
 @implementation HomeFeedViewController
+NSArray *data;
+NSString *CellIdentifier = @"TableViewCell";
+NSString *HeaderViewIdentifier = @"TableViewHeaderView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.arrayOfPosts = [[NSMutableArray alloc] init];
+
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:HeaderViewIdentifier];
+    
     self.navigationController.navigationBar.topItem.title = @"Home Feed";
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -44,6 +52,7 @@
     self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
     self.loadingMoreView.hidden = true;
     [self.tableView addSubview:self.loadingMoreView];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TableCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"TableCell"];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -57,7 +66,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
-    Post *post = self.arrayOfPosts[indexPath.row];
+    Post *post = self.arrayOfPosts[indexPath.section];
     [post.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         cell.postImage.image = [UIImage imageNamed:@"placeholder.png"]; // placeholder image
         cell.postImage.image = [UIImage imageWithData:data];
@@ -70,7 +79,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.arrayOfPosts.count;
+    return 1;
 }
 
 // Makes a network request to get updated data
@@ -132,6 +141,28 @@
     if(indexPath.row + 1 == [self.arrayOfPosts count]){
         [self loadMoreData:[self.arrayOfPosts count] + 20];
     }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.arrayOfPosts.count;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    TableCell *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TableCell"];
+    Post *post = self.arrayOfPosts[section];
+    header.usernameLabel.text = post.author.username;
+    NSDate *postTime = post.createdAt;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    // Configure the input format to parse the date string
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    header.timeLabel.text = [formatter stringFromDate:postTime];
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
