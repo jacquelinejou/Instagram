@@ -10,10 +10,11 @@
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
 #import "PostCell.h"
+#import "PostDelegate.h"
 #import "Post.h"
 #import "ComposeViewController.h"
 
-@interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
+@interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, PostDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfPosts;
 @end
@@ -26,6 +27,20 @@
     self.tableView.delegate = self;
     self.arrayOfPosts = [[NSMutableArray alloc] init];
     self.navigationController.navigationBar.topItem.title = @"Home Feed";
+    
+    // load posts
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.arrayOfPosts = (NSMutableArray *)posts;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -40,10 +55,11 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     Post *post = self.arrayOfPosts[indexPath.row];
-    NSURL *url = [NSURL URLWithString:post.picture];
-    NSString *newImage = [[NSString alloc] initWithContentsOfURL:url
-                                           encoding:NSUTF8StringEncoding error:nil];
-    cell.postImage.image = [UIImage imageNamed:newImage];
+    [post.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        cell.postImage.image = [UIImage imageNamed:@"placeholder.png"]; // placeholder image
+        cell.postImage.image = [UIImage imageWithData:data];
+        cell.userInteractionEnabled = YES;
+    }];
     cell.captionLabel.text = post.caption;
     cell.post = post;
     return cell;
@@ -53,9 +69,27 @@
     return self.arrayOfPosts.count;
 }
 
-- (void)didPost:(nonnull Post *)post {
-    [self.arrayOfPosts insertObject:post atIndex:0];
-    [self.tableView reloadData];
+- (void)didPost:(Post *)post {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.arrayOfPosts = (NSMutableArray *)posts;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UINavigationController *navController = [segue destinationViewController];
+    ComposeViewController *composeViewController = (ComposeViewController *)navController.topViewController;
+    // Third step, set the delegate property
+    composeViewController.delegate = self;
 }
 
 @end

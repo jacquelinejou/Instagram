@@ -104,13 +104,10 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8am-kd-ZYO">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="366"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="366" id="cY5-q4-1XA"/>
-                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLo-Oq-kVM">
-                                                    <rect key="frame" x="0.0" y="366" width="414" height="62"/>
-                                                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                    <rect key="frame" x="0.0" y="396" width="414" height="32"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -121,11 +118,15 @@
                                                 <constraint firstItem="8am-kd-ZYO" firstAttribute="leading" secondItem="hoY-uo-bSO" secondAttribute="leading" id="WuT-Xn-no6"/>
                                                 <constraint firstItem="8am-kd-ZYO" firstAttribute="top" secondItem="hoY-uo-bSO" secondAttribute="top" id="Xqr-d1-x9z"/>
                                                 <constraint firstAttribute="trailing" secondItem="bLo-Oq-kVM" secondAttribute="trailing" id="iaP-ga-rlY"/>
-                                                <constraint firstItem="bLo-Oq-kVM" firstAttribute="top" secondItem="8am-kd-ZYO" secondAttribute="bottom" id="ldn-Va-Lhu"/>
+                                                <constraint firstItem="bLo-Oq-kVM" firstAttribute="top" secondItem="8am-kd-ZYO" secondAttribute="bottom" constant="30" id="ldn-Va-Lhu"/>
                                                 <constraint firstItem="bLo-Oq-kVM" firstAttribute="leading" secondItem="hoY-uo-bSO" secondAttribute="leading" id="qbL-RY-gdO"/>
                                                 <constraint firstAttribute="bottom" secondItem="bLo-Oq-kVM" secondAttribute="bottom" id="zzz-Cn-m2e"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="8am-kd-ZYO" firstAttribute="height" secondItem="3Ni-P9-cFa" secondAttribute="height" multiplier="0.85514" id="NBx-2c-Dvq"/>
+                                            <constraint firstItem="8am-kd-ZYO" firstAttribute="centerX" secondItem="hoY-uo-bSO" secondAttribute="centerX" id="TP0-in-sFD"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="captionLabel" destination="bLo-Oq-kVM" id="LNw-5y-PaP"/>
                                             <outlet property="postImage" destination="8am-kd-ZYO" id="7Au-Tg-9dh"/>
@@ -228,7 +229,6 @@
                             </button>
                             <connections>
                                 <action selector="didTapCancel:" destination="4zk-xw-7xW" id="jTQ-Ei-Lp7"/>
-                                <segue destination="C4x-yb-pHY" kind="presentation" identifier="HomeFeedView" id="nLP-qU-gjT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="9Fe-W0-rtl">
@@ -250,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yiK-rU-sqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5062.3188405797109" y="115.84821428571428"/>
+            <point key="canvasLocation" x="5142" y="116"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="be9-Bd-wbB">
@@ -357,9 +357,6 @@
             <point key="canvasLocation" x="6163.7681159420299" y="115.84821428571428"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="nLP-qU-gjT"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="feed_tab" width="25" height="25"/>
         <image name="image_placeholder" width="375" height="375"/>
@@ -370,9 +367,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
