@@ -17,4 +17,9 @@
     [super setSelected:selected animated:animated];
 }
 
+-(void)prepareForReuse{
+    [super prepareForReuse];
+    self.postImage.image = nil;
+}
+
 @end

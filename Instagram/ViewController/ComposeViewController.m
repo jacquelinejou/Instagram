@@ -63,7 +63,7 @@
 - (IBAction)didTapShare:(id)sender {
     [Post postUserImage:self.resizedImage withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(!error){
-            [self.delegate didPost:self.post];
+            [self.delegate loadMoreData:20];
         } else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error Posting" message:@"Please retry." preferredStyle:(UIAlertControllerStyleAlert)];
             // create an OK action
