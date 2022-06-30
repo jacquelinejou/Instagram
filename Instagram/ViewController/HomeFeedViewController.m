@@ -73,22 +73,6 @@
     return self.arrayOfPosts.count;
 }
 
-- (void)didPost:(Post *)post {
-    // construct query
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"createdAt"];
-    [query includeKey:@"author"];
-    query.limit = 20;
-
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            self.arrayOfPosts = (NSMutableArray *)posts;
-            [self.tableView reloadData];
-        }
-    }];
-}
-
 // Makes a network request to get updated data
 // Updates the tableView with the new data
 // Hides the RefreshControl

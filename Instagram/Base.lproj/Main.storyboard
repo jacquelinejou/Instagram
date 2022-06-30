@@ -357,6 +357,7 @@
                     <connections>
                         <outlet property="captionLabel" destination="ZoT-ck-R1P" id="1qW-FG-iyC"/>
                         <outlet property="postImage" destination="NzV-Hy-mTQ" id="TEH-1p-jOw"/>
+                        <outlet property="shareButton" destination="9Fe-W0-rtl" id="55j-6f-6ej"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yiK-rU-sqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
