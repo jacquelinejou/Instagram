@@ -172,6 +172,14 @@
     return view;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PostDetailsViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"PostDetails"];
+    Post *dataToPass = self.arrayOfPosts[indexPath.section];
+    detailVC.detailPost = dataToPass;
+    [self presentViewController:detailVC animated:true completion:nil];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 30;
 }
@@ -183,7 +191,7 @@
         // Third step, set the delegate property
         composeViewController.delegate = self;
     } else if ([segue.identifier isEqualToString:@"PostDetails"]) {
-        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:sender];
+        NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
         Post *dataToPass = self.arrayOfPosts[myIndexPath.row];
         PostDetailsViewController *detailVC = [segue destinationViewController];
         detailVC.detailPost = dataToPass;
