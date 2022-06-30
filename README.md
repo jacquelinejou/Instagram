@@ -29,7 +29,7 @@ The following **optional** features are implemented:
 - [x] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
 - [ ] User can comment on a post and see all comments for each post in the post details screen
 - [ ] User can like a post and see number of likes for each post in the post details screen
-- [ ] Style the login page to look like the real Instagram login page
+- [x] Style the login page to look like the real Instagram login page
 - [x] Style the feed to look like the real Instagram feed
 - [ ] Implement a custom camera view
 
