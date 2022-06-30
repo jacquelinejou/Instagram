@@ -103,27 +103,44 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8am-kd-ZYO">
-                                                    <rect key="frame" x="19.5" y="11.5" width="375" height="399.5"/>
+                                                    <rect key="frame" x="19.5" y="50" width="375" height="399.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="8am-kd-ZYO" secondAttribute="height" multiplier="125:175" id="T00-Yh-1Wc"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLo-Oq-kVM">
-                                                    <rect key="frame" x="0.0" y="441" width="414" height="16"/>
+                                                    <rect key="frame" x="20" y="457" width="374" height="0.0"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GDG-di-Pgc">
+                                                    <rect key="frame" x="20" y="2" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="OWa-Tt-SSf"/>
+                                                        <constraint firstAttribute="height" constant="50" id="iS8-Dv-IZq"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDc-Yx-svN">
+                                                    <rect key="frame" x="72" y="2" width="168" height="50"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bLo-Oq-kVM" secondAttribute="bottom" constant="10" id="06x-Wm-nrz"/>
+                                                <constraint firstItem="bLo-Oq-kVM" firstAttribute="leading" secondItem="GDG-di-Pgc" secondAttribute="leading" id="4h0-of-i2P"/>
                                                 <constraint firstAttribute="trailing" secondItem="8am-kd-ZYO" secondAttribute="trailing" constant="19.5" id="7Pt-rP-RQq"/>
-                                                <constraint firstAttribute="trailing" secondItem="bLo-Oq-kVM" secondAttribute="trailing" id="iaP-ga-rlY"/>
-                                                <constraint firstItem="bLo-Oq-kVM" firstAttribute="top" secondItem="8am-kd-ZYO" secondAttribute="bottom" constant="30" id="ldn-Va-Lhu"/>
-                                                <constraint firstItem="bLo-Oq-kVM" firstAttribute="leading" secondItem="hoY-uo-bSO" secondAttribute="leading" id="qbL-RY-gdO"/>
+                                                <constraint firstItem="zDc-Yx-svN" firstAttribute="leading" secondItem="GDG-di-Pgc" secondAttribute="trailing" constant="2" id="7ve-mq-Vqv"/>
+                                                <constraint firstItem="zDc-Yx-svN" firstAttribute="top" secondItem="GDG-di-Pgc" secondAttribute="top" id="8rX-YM-BjG"/>
+                                                <constraint firstItem="GDG-di-Pgc" firstAttribute="top" secondItem="hoY-uo-bSO" secondAttribute="top" constant="2" id="ar2-F2-Gaq"/>
+                                                <constraint firstAttribute="trailing" secondItem="bLo-Oq-kVM" secondAttribute="trailing" constant="20" id="iaP-ga-rlY"/>
+                                                <constraint firstItem="bLo-Oq-kVM" firstAttribute="top" secondItem="8am-kd-ZYO" secondAttribute="bottom" constant="20" id="ldn-Va-Lhu"/>
+                                                <constraint firstItem="bLo-Oq-kVM" firstAttribute="leading" secondItem="hoY-uo-bSO" secondAttribute="leading" constant="20" id="qbL-RY-gdO"/>
                                                 <constraint firstItem="8am-kd-ZYO" firstAttribute="leading" secondItem="hoY-uo-bSO" secondAttribute="leading" constant="19.5" id="u3o-qm-Ey9"/>
-                                                <constraint firstItem="8am-kd-ZYO" firstAttribute="top" secondItem="hoY-uo-bSO" secondAttribute="top" constant="11.5" id="vNz-DN-VcE"/>
+                                                <constraint firstItem="8am-kd-ZYO" firstAttribute="top" secondItem="hoY-uo-bSO" secondAttribute="top" constant="50" id="vNz-DN-VcE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
@@ -134,6 +151,8 @@
                                         <connections>
                                             <outlet property="captionLabel" destination="bLo-Oq-kVM" id="LNw-5y-PaP"/>
                                             <outlet property="postImage" destination="8am-kd-ZYO" id="7Au-Tg-9dh"/>
+                                            <outlet property="profileImage" destination="GDG-di-Pgc" id="PW2-Uc-Org"/>
+                                            <outlet property="usernameLabel" destination="zDc-Yx-svN" id="Onm-s3-XNX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -373,7 +392,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iLI-cp-Wp8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="208" width="414" height="634"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kLE-rk-XAb">
                                     <size key="itemSize" width="168" height="165"/>
@@ -407,19 +426,41 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="mo7-sy-jLK">
+                                <rect key="frame" x="29" y="29" width="134" height="126"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="126" id="GbP-KQ-Yti"/>
+                                    <constraint firstAttribute="width" constant="134" id="vWz-fP-VAf"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-Qd-oN1">
+                                <rect key="frame" x="14" y="158" width="169" height="31"/>
+                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Change Profile Picture"/>
+                                <connections>
+                                    <action selector="changeProfilePicture:" destination="9da-2p-Z8n" eventType="touchUpInside" id="xIZ-zC-Wgi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xHD-sR-hK2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iLI-cp-Wp8" firstAttribute="top" secondItem="Wi0-f0-chs" secondAttribute="top" id="OhD-eA-uGO"/>
+                            <constraint firstItem="iLI-cp-Wp8" firstAttribute="height" secondItem="Wi0-f0-chs" secondAttribute="height" multiplier="0.752969" id="Fzz-jG-xgm"/>
+                            <constraint firstItem="mo7-sy-jLK" firstAttribute="leading" secondItem="xHD-sR-hK2" secondAttribute="leading" constant="29" id="Nfy-DO-Kak"/>
+                            <constraint firstItem="vYN-Qd-oN1" firstAttribute="top" secondItem="mo7-sy-jLK" secondAttribute="bottom" constant="3" id="TEa-tJ-v5X"/>
+                            <constraint firstItem="mo7-sy-jLK" firstAttribute="leading" secondItem="vYN-Qd-oN1" secondAttribute="leading" constant="15" id="Xbc-wQ-iOo"/>
                             <constraint firstItem="iLI-cp-Wp8" firstAttribute="trailing" secondItem="xHD-sR-hK2" secondAttribute="trailing" id="XhQ-Dr-mjv"/>
                             <constraint firstItem="iLI-cp-Wp8" firstAttribute="leading" secondItem="xHD-sR-hK2" secondAttribute="leading" id="Yk0-D3-v0Z"/>
                             <constraint firstAttribute="bottom" secondItem="iLI-cp-Wp8" secondAttribute="bottom" id="eCz-P0-5ln"/>
+                            <constraint firstItem="mo7-sy-jLK" firstAttribute="top" secondItem="Wi0-f0-chs" secondAttribute="top" constant="29" id="gbC-1h-Ct1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dfp-mn-cBP"/>
                     <connections>
+                        <outlet property="changeProfPicButton" destination="vYN-Qd-oN1" id="grw-1n-Rzr"/>
                         <outlet property="collectionView" destination="iLI-cp-Wp8" id="SCW-Lj-Ok9"/>
+                        <outlet property="profileImage" destination="mo7-sy-jLK" id="JBQ-G3-Lr2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PwA-3k-iNN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -512,6 +553,9 @@
         <image name="profile_tab" width="25" height="25"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -67,6 +67,11 @@
     }];
     cell.captionLabel.text = post.caption;
     cell.post = post;
+    cell.captionLabel.text = post.author.username;
+    [[PFUser currentUser][@"profilePicture"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        cell.profileImage.image = [UIImage imageNamed:@"placeholder.png"]; // placeholder image
+        cell.profileImage.image = [UIImage imageWithData:data];
+    }];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
