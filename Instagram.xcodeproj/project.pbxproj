@@ -28,6 +28,7 @@
 		2D6A77ED286CB223008786BF /* PostDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6A77EC286CB223008786BF /* PostDetailsViewController.m */; };
 		2D6A77F0286CC7CC008786BF /* InfiniteScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6A77EF286CC7CC008786BF /* InfiniteScrollViewController.m */; };
 		2D6A77F5286D0579008786BF /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6A77F4286D0579008786BF /* View.xib */; };
+		2D6A7800286E4E76008786BF /* DancingScript-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D6A77FF286E4E76008786BF /* DancingScript-VariableFont_wght.ttf */; };
 		594841D99C1EA46C00EA4CE5 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0681B76B98CC9C0095699B0 /* Pods_Instagram.framework */; };
 		DD8D5FA6E42AED9E418AACE3 /* Pods_InstagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D5F4DB2CADE98D906F62C3 /* Pods_InstagramTests.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		2D6A77EE286CC7CC008786BF /* InfiniteScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollViewController.h; sourceTree = "<group>"; };
 		2D6A77EF286CC7CC008786BF /* InfiniteScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollViewController.m; sourceTree = "<group>"; };
 		2D6A77F4286D0579008786BF /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		2D6A77FF286E4E76008786BF /* DancingScript-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DancingScript-VariableFont_wght.ttf"; path = "../../../../Downloads/Dancing_Script/DancingScript-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		3EF2FFD78FEA34DFCA65FD57 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		97D1498B6C4D74F5AF622F3C /* Pods_Instagram_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90B23C0234900DAFDD922B7 /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		2D6A7787286A4E2D008786BF /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				2D6A77FF286E4E76008786BF /* DancingScript-VariableFont_wght.ttf */,
 				2D6A77F3286D0517008786BF /* Views */,
 				2D6A77E9286BBC74008786BF /* Delegate */,
 				2D6A77DC286AA4B4008786BF /* Models */,
@@ -375,6 +378,7 @@
 				2D6A7798286A4E2F008786BF /* LaunchScreen.storyboard in Resources */,
 				2D6A77F5286D0579008786BF /* View.xib in Resources */,
 				2D6A7795286A4E2F008786BF /* Assets.xcassets in Resources */,
+				2D6A7800286E4E76008786BF /* DancingScript-VariableFont_wght.ttf in Resources */,
 				2D6A7793286A4E2D008786BF /* Main.storyboard in Resources */,
 				2D6A77CD286A6673008786BF /* Keys.plist in Resources */,
 			);
