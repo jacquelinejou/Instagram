@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -371,22 +372,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ccj-aH-MOd">
-                                <rect key="frame" x="36" y="87" width="140" height="141"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="PWg-r1-nuj"/>
-                                    <constraint firstAttribute="height" constant="141" id="t0v-e2-iii"/>
-                                </constraints>
-                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iLI-cp-Wp8">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kLE-rk-XAb">
+                                    <size key="itemSize" width="168" height="165"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="Nn5-da-NEi" customClass="PhotoCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="168" height="165"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iHS-9f-JFL">
+                                            <rect key="frame" x="0.0" y="0.0" width="168" height="165"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zqn-eU-XiL">
+                                                    <rect key="frame" x="15" y="8" width="138" height="147"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="zqn-eU-XiL" secondAttribute="bottom" constant="10" id="AFo-ch-X4a"/>
+                                                <constraint firstItem="zqn-eU-XiL" firstAttribute="leading" secondItem="iHS-9f-JFL" secondAttribute="leading" constant="15" id="Wwa-us-FjU"/>
+                                                <constraint firstAttribute="trailing" secondItem="zqn-eU-XiL" secondAttribute="trailing" constant="15" id="awP-Am-T0p"/>
+                                                <constraint firstItem="zqn-eU-XiL" firstAttribute="top" secondItem="iHS-9f-JFL" secondAttribute="top" constant="8" id="kVN-9Q-51N"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="168" height="165"/>
+                                        <connections>
+                                            <outlet property="postImage" destination="zqn-eU-XiL" id="aUJ-ex-83y"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xHD-sR-hK2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ccj-aH-MOd" firstAttribute="top" secondItem="xHD-sR-hK2" secondAttribute="top" constant="31" id="ZPD-u1-IwX"/>
-                            <constraint firstItem="ccj-aH-MOd" firstAttribute="leading" secondItem="xHD-sR-hK2" secondAttribute="leading" constant="36" id="zMY-gy-6gU"/>
+                            <constraint firstItem="iLI-cp-Wp8" firstAttribute="top" secondItem="Wi0-f0-chs" secondAttribute="top" id="OhD-eA-uGO"/>
+                            <constraint firstItem="iLI-cp-Wp8" firstAttribute="trailing" secondItem="xHD-sR-hK2" secondAttribute="trailing" id="XhQ-Dr-mjv"/>
+                            <constraint firstItem="iLI-cp-Wp8" firstAttribute="leading" secondItem="xHD-sR-hK2" secondAttribute="leading" id="Yk0-D3-v0Z"/>
+                            <constraint firstAttribute="bottom" secondItem="iLI-cp-Wp8" secondAttribute="bottom" id="eCz-P0-5ln"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dfp-mn-cBP"/>
+                    <connections>
+                        <outlet property="collectionView" destination="iLI-cp-Wp8" id="SCW-Lj-Ok9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PwA-3k-iNN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
