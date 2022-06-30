@@ -7,6 +7,7 @@
 
 #import "ComposeViewController.h"
 #import "Post.h"
+#import "MBProgressHUD.h"
 
 @interface ComposeViewController ()
 
@@ -64,6 +65,7 @@
 // Add a loading sign while request is going on
 - (IBAction)didTapShare:(id)sender {
     self.shareButton.enabled = NO;
+    [MBProgressHUD showHUDAddedTo:self.view animated:true];
     [Post postUserImage:self.resizedImage withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(!error){
             [self.delegate loadMoreData:20];
@@ -76,6 +78,7 @@
             // add the OK action to the alert controller
             [alert addAction:okAction];
         }
+        [MBProgressHUD hideHUDForView:self.view animated:true];
         [self dismissViewControllerAnimated:YES completion:nil];
         self.shareButton.enabled = YES;
     }];
