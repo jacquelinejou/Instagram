@@ -15,6 +15,7 @@
 #import "ComposeViewController.h"
 #import "InfiniteScrollViewController.h"
 #import "PostDetailsViewController.h"
+#import "ProfileViewController.h"
 
 @interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, PostDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -73,7 +74,22 @@
         cell.profileImage.image = [UIImage imageWithData:data];
     }];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.profileImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture1 = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(tapGesture:)];
+    tapGesture1.numberOfTapsRequired = 1;
+    [tapGesture1 setDelegate:cell];
+    [cell.profileImage addGestureRecognizer:tapGesture1];
     return cell;
+}
+
+- (void) tapGesture: (id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PostDetailsViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"ProfileDetails"];
+    [self presentViewController:detailVC animated:true completion:nil];
+ }
+
+- (IBAction)tapUsername:(id)sender {
+    [self tapGesture:nil];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
